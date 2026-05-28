@@ -24,7 +24,7 @@ export function HallOfFame() {
 
   useEffect(() => {
     load();
-    const timer = window.setInterval(load, 60000);
+    const timer = window.setInterval(load, 3600000);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -36,7 +36,7 @@ export function HallOfFame() {
           BOLLYWOOD KA BEST - Hall of Fame
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-8 text-cream/70">
-          Top voted commit dramas, refreshed every 60 seconds.
+          Top voted commit dramas, refreshed every hour.
         </p>
 
         {error ? (

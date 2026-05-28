@@ -237,23 +237,28 @@ export function GitLogGenerator() {
 
       <section id="how-to-use" className="mx-auto max-w-4xl px-4 pb-20">
         <details className="poster-card rounded-lg p-5">
-          <summary className="cursor-pointer font-display text-2xl font-black text-gold">How to use</summary>
-          <div className="mt-5 grid gap-4 text-sm leading-7 text-cream/76 md:grid-cols-3">
-            <code className="rounded-md border border-border bg-bg/70 p-4 font-mono">
-              Mac/Linux
-              <br />
-              git log --pretty=format:&apos;%h|%an|%ar|%s&apos;
-            </code>
-            <code className="rounded-md border border-border bg-bg/70 p-4 font-mono">
-              Windows PowerShell
-              <br />
-              git log --pretty=format:&quot;%h|%an|%ar|%s&quot;
-            </code>
-            <code className="rounded-md border border-border bg-bg/70 p-4 font-mono">
-              Quick mode
-              <br />
-              git log --oneline
-            </code>
+          <summary className="cursor-pointer font-display text-2xl font-black text-gold">How to use (Step-by-Step Guide)</summary>
+          <div className="mt-5 space-y-4 text-sm leading-7 text-cream/80">
+            <p>
+              <strong className="text-gold">Step 1:</strong> Open your terminal or command prompt in your Git project folder.
+            </p>
+            <p>
+              <strong className="text-gold">Step 2:</strong> Run a <code className="text-gold-light">git log</code> command to get your commit history. We support three formats:
+            </p>
+            <ul className="ml-5 list-disc space-y-2">
+              <li>
+                <strong>Standard Format (Recommended):</strong> Just run <code className="rounded border border-border bg-bg/50 px-1.5 py-0.5 font-mono text-gold-light">git log -n 10</code>
+              </li>
+              <li>
+                <strong>Short Format:</strong> Run <code className="rounded border border-border bg-bg/50 px-1.5 py-0.5 font-mono text-gold-light">git log --oneline -n 10</code>
+              </li>
+              <li>
+                <strong>Pretty Format:</strong> Run <code className="rounded border border-border bg-bg/50 px-1.5 py-0.5 font-mono text-gold-light">git log --pretty=format:&quot;%h|%an|%ar|%s&quot;</code>
+              </li>
+            </ul>
+            <p>
+              <strong className="text-gold">Step 3:</strong> Highlight the output in your terminal, copy it, and paste it directly into the text box above!
+            </p>
           </div>
         </details>
       </section>
