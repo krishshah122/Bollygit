@@ -48,16 +48,34 @@ export function ActionBar({ dramaId, upvotes = 0, onGenerateAgain }: ActionBarPr
     }
 
     setBusy(true);
+    
+    // Temporarily force width to 1080px for Instagram/Canva poster size
+    const originalWidth = element.style.width;
+    const originalMaxWidth = element.style.maxWidth;
+    
+    element.style.width = "1080px";
+    element.style.maxWidth = "1080px";
+    
+    // Add a tiny delay to let the browser apply the styles
+    await new Promise(resolve => setTimeout(resolve, 50));
+
     try {
       const canvas = await html2canvas(element, {
         backgroundColor: "#080608",
-        scale: Math.min(window.devicePixelRatio || 1, 2)
+        scale: 2, // High resolution
+        windowWidth: 1080,
+        width: 1080,
+        useCORS: true,
+        scrollY: -window.scrollY, // Fixes the "half image" bug when scrolled down
       });
       const link = document.createElement("a");
       link.download = `bollygit-${dramaId || "poster"}.png`;
-      link.href = canvas.toDataURL("image/png");
+      link.href = canvas.toDataURL("image/png", 1.0);
       link.click();
     } finally {
+      // Restore original styles
+      element.style.width = originalWidth;
+      element.style.maxWidth = originalMaxWidth;
       setBusy(false);
     }
   }
