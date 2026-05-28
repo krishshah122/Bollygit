@@ -1,6 +1,6 @@
 "use client";
 
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 import { Download, Heart, Link as LinkIcon, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getBrowserFingerprint } from "@/lib/fingerprint";
@@ -48,36 +48,28 @@ export function ActionBar({ dramaId, upvotes = 0, onGenerateAgain }: ActionBarPr
     }
 
     setBusy(true);
-    
-    // Temporarily force width to 1080px for Instagram/Canva poster size
-    const originalWidth = element.style.width;
-    const originalMaxWidth = element.style.maxWidth;
-    
-    element.style.width = "1080px";
-    element.style.maxWidth = "1080px";
-    
-    // Add a tiny delay to let the browser apply the styles
-    await new Promise(resolve => setTimeout(resolve, 50));
 
     try {
-      const canvas = await html2canvas(element, {
+      // html-to-image uses SVG foreignObject which captures exactly what the browser renders.
+      // It handles scroll, padding, and gradients significantly better than html2canvas.
+      const dataUrl = await toPng(element, {
         backgroundColor: "#080608",
-        scale: 2, // High resolution
-        windowWidth: 1080,
-        width: 1080,
-        height: element.scrollHeight,
-        windowHeight: element.scrollHeight,
-        useCORS: true,
-        scrollY: -window.scrollY, // Fixes the "half image" bug when scrolled down
+        pixelRatio: 2, // High resolution
+        style: {
+          width: '1080px',     // Enforce strict width for Canva/Instagram size
+          maxWidth: '1080px',
+          transform: 'none',   // Prevent any weird zooming issues during capture
+        }
       });
+      
       const link = document.createElement("a");
       link.download = `bollygit-${dramaId || "poster"}.png`;
-      link.href = canvas.toDataURL("image/png", 1.0);
+      link.href = dataUrl;
       link.click();
+    } catch (error) {
+      console.error("Failed to generate poster:", error);
+      setToast("Poster generate hone mein error aaya");
     } finally {
-      // Restore original styles
-      element.style.width = originalWidth;
-      element.style.maxWidth = originalMaxWidth;
       setBusy(false);
     }
   }
