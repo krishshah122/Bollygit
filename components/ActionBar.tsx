@@ -55,7 +55,10 @@ export function ActionBar({ dramaId, upvotes = 0, onGenerateAgain }: ActionBarPr
       const dataUrl = await toPng(element, {
         backgroundColor: "#080608",
         pixelRatio: 3, // Ultra-high resolution to make up for not forcing width
+        width: element.scrollWidth,
+        height: element.scrollHeight,
         style: {
+          margin: '0',
           transform: 'none',   // Prevent any weird zooming issues during capture
         }
       });

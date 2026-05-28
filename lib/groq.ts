@@ -22,7 +22,7 @@ Rules:
 4. Use the actual technical content — mention the real bug, feature, or file name but dramatize it
 5. Author name becomes a character name — use it
 6. Time becomes cinematic — "teen raat ke baad", "suraj dhalne se pehle"
-7. Generate a Bollywood film TITLE for the whole log (all caps, dramatic)
+7. Generate a UNIQUE Bollywood film TITLE that is highly specific to the actual features or bugs in these commits (e.g. if commits are about payments, "PAYMENT KA CHAKKAR", if about UI, "RANG DE FRONTEND"). Do NOT use generic titles like "CODE KA RAJA".
 8. Generate a film TAGLINE (one line, profound and funny)
 9. Generate a CAST LIST mapping each unique author to a character archetype
 
