@@ -65,6 +65,8 @@ export function ActionBar({ dramaId, upvotes = 0, onGenerateAgain }: ActionBarPr
         scale: 2, // High resolution
         windowWidth: 1080,
         width: 1080,
+        height: element.scrollHeight,
+        windowHeight: element.scrollHeight,
         useCORS: true,
         scrollY: -window.scrollY, // Fixes the "half image" bug when scrolled down
       });
