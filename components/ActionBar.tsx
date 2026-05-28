@@ -54,10 +54,8 @@ export function ActionBar({ dramaId, upvotes = 0, onGenerateAgain }: ActionBarPr
       // It handles scroll, padding, and gradients significantly better than html2canvas.
       const dataUrl = await toPng(element, {
         backgroundColor: "#080608",
-        pixelRatio: 2, // High resolution
+        pixelRatio: 3, // Ultra-high resolution to make up for not forcing width
         style: {
-          width: '1080px',     // Enforce strict width for Canva/Instagram size
-          maxWidth: '1080px',
           transform: 'none',   // Prevent any weird zooming issues during capture
         }
       });
